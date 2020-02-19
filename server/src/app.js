@@ -7,13 +7,22 @@ const morgan = require('morgan');
 
 const app = express();
 
-app.use(morgan('combined'));
+ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/status', (req, res) => {
+
+// app.get('/register', (req, res, next) => {
+// });
+
+app.post('/register', (req, res, next) => {
+  
+    var email = req.body.email;
+    var password = req.body.password;
+    console.log(req.body);
+    console.log(email, password);
     res.send({
-        message: "Hello World!"
+        message: `Hello ${req.body.email}Account has beeen registered`
     });
 });
 
