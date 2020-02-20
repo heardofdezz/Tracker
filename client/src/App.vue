@@ -20,6 +20,14 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   margin-right: 60px;
+  position: center;
+}
 
+.v-input-group--text-field input {
+  border-bottom: 10px solid black;
+}
+
+.v-toolbar__title {
+  color: white;
 }
 </style>

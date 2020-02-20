@@ -1,22 +1,24 @@
 <template>
 <v-layout column>
-  <v-flex xs3 offset-xs3>
+  <v-flex xs6 offset-xs3>
     <div class="white elevation-2">
       <v-toolbar flat dense class="cyan" dark>
         <v-toolbar-title>Register</v-toolbar-title>
       </v-toolbar>
 
       <div class="pl-4 pr-4 pt-2 pb-2">
-        <input
-        v-model="email"
-        type="email" 
-        name="email" 
-        placeholder="Enter your emaill" /> <br>
-        <input 
-        v-model="password"
-        type="password" 
-        name="password" 
-        placeholder="Password"/>
+        <v-text-field
+          v-model="email"
+          name="input1"
+          label="Email"
+          value="Input text">
+        </v-text-field>
+        <v-text-field
+          v-model="password"
+          name="input2"
+          label="Password"
+          value="Input text"> 
+        </v-text-field>
         <br>
         <div class="error" v-html="error" />
         <br>
@@ -62,4 +64,5 @@ export default {
 .error{
   color: red
 }
+
 </style>
