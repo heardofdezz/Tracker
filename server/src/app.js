@@ -1,29 +1,22 @@
-console.log('Running Server');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-
+const {sequelize} = require('./models')
+const  config = require('./config/config')
 
 const app = express();
 
- app.use(morgan('combined'));
+app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
 
-// app.get('/register', (req, res, next) => {
-// });
+require('./routes')(app)
 
-app.post('/register', (req, res, next) => {
-  
-    var email = req.body.email;
-    var password = req.body.password;
-    console.log(req.body);
-    console.log(email, password);
-    res.send({
-        message: `Hello ${req.body.email}Account has beeen registered`
-    });
-});
-
-app.listen(process.env.Port || 8081);
+sequelize.sync().then(() => {
+    app.listen(config.port)
+    console.log(`Server Running on port ${config.port} with Sequelize DB`)
+}).catch((err) => {
+    console.log('something went wrong', err)
+})
