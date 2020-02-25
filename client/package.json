@@ -18,7 +18,8 @@
     "css-mqpacker": "^7.0.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "vuetify": "^2.2.14"
+    "vuetify": "^2.2.14",
+    "vuetify-dialog": "^1.0.0-alpha.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -1,8 +1,9 @@
 <template>
-<v-layout column>
+<div id="register">
+  <v-layout column>
   <v-flex xs6 offset-xs3>
     <div class="white elevation-2">
-      <v-toolbar flat dense class="cyan" dark>
+      <v-toolbar flat dense class="black" dark>
         <v-toolbar-title>Register</v-toolbar-title>
       </v-toolbar>
 
@@ -23,13 +24,15 @@
         <div class="error" v-html="error" />
         <br>
         <v-btn
-        class="cyan"
+        class="blue"
         @click="register"
         >Register</v-btn>
       </div>
     </div>
   </v-flex>
 </v-layout>
+</div>
+
 </template>
 
 <script>
@@ -64,5 +67,9 @@ export default {
 .error{
   color: red
 }
-
+#register{
+  margin-top: 40px;
+  /* margin-right: 150px; */
+  margin-left: 0px; 
+}
 </style>
