@@ -19,7 +19,9 @@
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuetify": "^2.2.14",
-    "vuetify-dialog": "^1.0.0-alpha.5"
+    "vuetify-dialog": "^1.0.0-alpha.5",
+    "vuex": "^3.1.2",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

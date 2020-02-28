@@ -6,6 +6,7 @@ const config = require('../config/config')
 
 function jwtSignUser(user) {
     const ONE_WEEK = 60 * 60 * 24 * 7
+    console.log('user :', user);
     return jwt.sign(user, config.authentification.jwtSecret, {
         expiresIn: ONE_WEEK
     })  
@@ -15,8 +16,11 @@ module.exports = {
    async register (req, res) {
         try {
             const user = await User.create(req.body)
-            // console.log(req.body)
-            res.send(user.toJSON())
+            const userJson = user.toJSON()
+            res.send({
+                user: userJson,
+                token: jwtSignUser(userJson)
+            })
         } catch (err) {
             console.log(err)
             res.status(400).send({
@@ -35,28 +39,28 @@ module.exports = {
             })
             if(!user){
                return res.status(403).send({
-                    error: 'You have entered the wrong information 1'
+                    error: 'Wrong login information 1'
                 })
             }
 
-            const isPasswordValid = password === user.password
+            const isPasswordValid = await user.comparePassword(password)
+            // console.log(password)
             console.log(isPasswordValid)
             if(!isPasswordValid){
-               return res.status.send({
-                   error: 'You have entered the wrong information 2'
+               return res.status(403).send({
+                   error: 'Wrong login information 2'
                }) 
             }
-            const userJson = user.toJSON
+            const userJson = user.toJSON()
             res.send({
-              user: userJson,
+              user: userJson, 
               token: jwtSignUser(userJson)
             })
             // console.log(req.body)
         } catch (err) {
             console.log(err)
             res.status(500).send({
-                error: 'Invalid login information',
-                error: 'You have entered the wrong information 3 '
+                error: 'An error has occured trying to login'
             })
         }  
     }

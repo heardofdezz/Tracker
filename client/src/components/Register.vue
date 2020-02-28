@@ -8,6 +8,7 @@
       </v-toolbar>
 
       <div class="pl-4 pr-4 pt-2 pb-2">
+        <form name="tracker-signup-form" autocomplete="off">
         <v-text-field
           v-model="email"
           name="input1"
@@ -16,10 +17,13 @@
         </v-text-field>
         <v-text-field
           v-model="password"
+          type="password"
           name="input2"
           label="Password"
+          autocomplete="new-password"
           value="Input text"> 
         </v-text-field>
+        </form>
         <br>
         <div class="error" v-html="error" />
         <br>
@@ -52,10 +56,11 @@ export default {
             email: this.email,
             password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
      } catch (error){
        this.error = error.response.data.error
-     }
-       
+     }    
         console.log('register button has been clicked', this.email, this.password)
     }
   }

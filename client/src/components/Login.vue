@@ -6,7 +6,6 @@
       <v-toolbar flat dense class="black" dark>
         <v-toolbar-title>Login</v-toolbar-title>
       </v-toolbar>
-
       <div class="pl-4 pr-4 pt-2 pb-2">
         <v-text-field
           v-model="email"
@@ -16,6 +15,7 @@
         </v-text-field>
         <v-text-field
           v-model="password"
+          type="password"
           name="input2"
           label="Password"
           value="Input text"> 
@@ -52,6 +52,8 @@ export default {
             email: this.email,
             password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
      } catch (error){
        this.error = error.response.data.error
      }
