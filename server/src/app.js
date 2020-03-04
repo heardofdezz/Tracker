@@ -18,5 +18,5 @@ sequelize.sync().then(() => {
     app.listen(config.port)
     console.log(`Server Running on port ${config.port} with Sequelize DB`)
 }).catch((err) => {
-    console.log('something went wrong', err)
+    console.log('SOMETHING WENT WRONG : ', err)
 })
